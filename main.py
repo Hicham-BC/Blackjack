@@ -4,15 +4,15 @@ def blackjack():
     if computer_score == 21:
         final_hand()
         print("Blackjack, Computer Wins")
-        return False
+        return True
     elif user_score == 21:
         final_hand()
         print("Blackjack, You Win")
-        return False
-    return True
+        return True
+    return False
 
 def compare_score():
-    if blackjack():
+    if not blackjack():
         final_hand()
         if computer_score > 21:
             print("Computer went over 21, You win")
@@ -23,7 +23,7 @@ def compare_score():
         else:
             print("Computer wins")
     
-    return False
+    return True
 
 def ace(cards, score):
     card = choice(cards)
@@ -53,29 +53,29 @@ remove_cards(computer_cards, computer_hand)
 user_score = sum(user_hand)
 computer_score = sum(computer_hand)
 
-should_continue = blackjack()
+game_over = blackjack()
 
-while should_continue:
+while not game_over:
     print(f"\tyour cards: {user_hand} >> current score:{sum(user_hand)}")
     print(f"\tcomputer's first card is: {computer_hand[0]}")
     if input("Type 'y' to get another card, type 'n' to pass: ") == "y":
         user_card = ace(user_cards, user_score)
         user_hand.append(user_card)
-        user_cards.remove(user_hand[-1])
+        user_cards.remove(user_hand[-1]) if (user_card != 1) else user_cards.remove(11)
         user_score = sum(user_hand)
 
-        should_continue = blackjack()
+        game_over = blackjack()
         if user_score > 21:
             final_hand()
             print("You went over 21, Computer Wins")
-            should_continue = False
+            game_over = True
     else:
         while computer_score < 17:
             computer_card = ace(computer_cards, computer_score)
             computer_hand.append(computer_card)
-            computer_cards.remove(computer_hand[-1])
+            computer_cards.remove(computer_hand[-1]) if (computer_card != 1) else computer_cards.remove(11)
             computer_score = sum(computer_hand)
         
-        should_continue = compare_score()
+        game_over = compare_score()
 
         
