@@ -84,5 +84,3 @@ while input("Do you want to play a game of Blackjack? Type 'yes' or 'no': ") == 
                 computer_score = sum(computer_hand)
             
             game_over = compare_score()
-
-        
