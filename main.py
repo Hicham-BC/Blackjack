@@ -33,7 +33,7 @@ while input("Do you want to play a game of Blackjack? Type 'yes' or 'no': ") == 
             user_card = ace(user_cards, user_score)
             # Add the drawn card to the player's hand
             user_hand.append(user_card)
-            # remove the value of Ace in the user's cards
+            # remove the drawn card in the user's cards, considering the possibility of an Ace
             user_cards.remove(user_hand[-1]) if (user_card != 1) else user_cards.remove(11)
             # Recalculate the total score for the player's hand
             user_score = sum(user_hand)
@@ -54,7 +54,7 @@ while input("Do you want to play a game of Blackjack? Type 'yes' or 'no': ") == 
                 computer_card = ace(computer_cards, computer_score)
                 # Add the drawn card to the computer's hand
                 computer_hand.append(computer_card)
-                # remove the value of Ace in the computer's cards
+                # remove the drawn card in the computer's cards, considering the possibility of an Ace
                 computer_cards.remove(computer_hand[-1]) if (computer_card != 1) else computer_cards.remove(11)
                 # Recalculate the total score for the computer's hand
                 computer_score = sum(computer_hand)
